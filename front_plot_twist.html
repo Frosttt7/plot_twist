@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processo de Ingressão: Auxiliar Administrativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a2463, #1e3a8a, #3b82f6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 26px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #dbeafe, #bfdbfe, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #dbeafe;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid #bfdbfe;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background: linear-gradient(to right, #1e40af, #3b82f6);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            border: 1px solid #60a5fa;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            background: linear-gradient(to right, #1d4ed8, #2563eb);
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .success {
+            background: rgba(34, 197, 94, 0.2);
+            color: #bbf7d0;
+            border: 1px solid #4ade80;
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fecaca;
+            border: 1px solid #f87171;
+        }
+        
+        .info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #bfdbfe;
+            border: 1px solid #60a5fa;
+        }
+        
+        .hidden-message {
+            background-color: #000000;
+            color: #ff0000;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+            border: 2px solid #ff0000;
+            display: none;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+        
+        .hidden-message p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 40px;
+            color: #dbeafe;
+        }
+        
+        .glitch-effect {
+            animation: glitch 0.5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">📊</div>
+        <h1>PROCESSO DE INGRESSÃO: AUXILIAR ADMINISTRATIVO</h1>
+        
+        <div id="step1" class="step active">
+            <div class="input-group">
+                <label for="nome">Qual o seu nome completo:</label>
+                <input type="text" id="nome" placeholder="Digite seu nome completo">
+            </div>
+            <button onclick="processarNome()">Continuar</button>
+        </div>
+        
+        <div id="step2" class="step">
+            <div class="input-group">
+                <label for="idade">Quantos anos você tem?</label>
+                <input type="number" id="idade" placeholder="Digite sua idade">
+            </div>
+            <button onclick="processarIdade()">Continuar</button>
+            <div id="idadeError" class="message error" style="display: none;">
+                Por favor, digite sua idade apenas em números.
+            </div>
+        </div>
+        
+        <div id="step3" class="step">
+            <div id="mensagemIdade" class="message"></div>
+            <div class="input-group">
+                <label>Você deseja ingressar na empresa?</label>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="processarIngresso(true)" style="background: linear-gradient(to right, #059669, #10b981); border: 1px solid #34d399;">Sim</button>
+                    <button onclick="processarIngresso(false)" style="background: linear-gradient(to right, #dc2626, #ef4444); border: 1px solid #f87171;">Não</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="step4" class="step">
+            <div class="message success">
+                UHUU! Preencha abaixo as informações, queremos saber mais sobre você!
+            </div>
+            <div class="input-group">
+                <label>Você possui experiência na área?</label>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="processarExperiencia(true)" style="background: linear-gradient(to right, #059669, #10b981); border: 1px solid #34d399;">Sim</button>
+                    <button onclick="processarExperiencia(false)" style="background: linear-gradient(to right, #dc2626, #ef4444); border: 1px solid #f87171;">Não</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="step5" class="step">
+            <div id="mensagemExperiencia" class="message"></div>
+            <div id="mensagemFinal" class="hidden-message">
+                <p>SE VOCÊ ESTIVER VENDO ISSO</p>
+                <p>TOME CUIDADO</p>
+                <p>ISSO É UM TESTE</p>
+                <p>ELE ESTÁ OLHANDO PARA VOCÊ AGORA</p>
+                <p>FROST POWER BILINI</p>
+            </div>
+            <button onclick="reiniciarProcesso()" style="background: linear-gradient(to right, #7c3aed, #8b5cf6); border: 1px solid #a78bfa;">Reiniciar Processo</button>
+        </div>
+        
+        <div id="stepRecusa" class="step">
+            <div class="message error">
+                Que pena! Esperamos vê-lo em outra oportunidade.
+            </div>
+            <div id="mensagemFinalRecusa" class="hidden-message">
+                <p>SE VOCÊ ESTIVER VENDO ISSO</p>
+                <p>TOME CUIDADO</p>
+                <p>ISSO É UM TESTE</p>
+                <p>ELE ESTÁ OLHANDO PARA VOCÊ AGORA</p>
+                <p>FROST POWER BILINI</p>
+            </div>
+            <button onclick="reiniciarProcesso()" style="background: linear-gradient(to right, #7c3aed, #8b5cf6); border: 1px solid #a78bfa;">Reiniciar Processo</button>
+        </div>
+    </div>
+
+    <script>
+        let primeiroNome = "";
+        let idade = 0;
+        let sim = false;
+        
+        function mostrarEtapa(etapaId) {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(etapaId).classList.add('active');
+        }
+        
+        function processarNome() {
+            const nomeCompleto = document.getElementById('nome').value.trim();
+            if (nomeCompleto === "") {
+                alert("Por favor, digite seu nome.");
+                return;
+            }
+            
+            primeiroNome = nomeCompleto.split(' ')[0];
+            document.getElementById('step1').querySelector('button').textContent = `Olá, ${primeiroNome}! Continuar`;
+            mostrarEtapa('step2');
+        }
+        
+        function processarIdade() {
+            const idadeInput = document.getElementById('idade').value;
+            const idadeError = document.getElementById('idadeError');
+            
+            if (idadeInput === "" || isNaN(idadeInput)) {
+                idadeError.style.display = 'block';
+                return;
+            }
+            
+            idadeError.style.display = 'none';
+            idade = parseInt(idadeInput);
+            
+            const mensagemIdade = document.getElementById('mensagemIdade');
+            if (idade >= 18) {
+                mensagemIdade.innerHTML = `Que bacana você tem ${idade} anos, isso quer dizer que você é maior de idade e pode ingressar na empresa!`;
+                mensagemIdade.className = 'message success';
+            } else {
+                mensagemIdade.innerHTML = `Que pena você tem ${idade} anos, isso quer dizer que você é inapto para ingressar na empresa!`;
+                mensagemIdade.className = 'message error';
+            }
+            
+            mostrarEtapa('step3');
+        }
+        
+        function processarIngresso(resposta) {
+            sim = resposta;
+            
+            if (sim) {
+                mostrarEtapa('step4');
+            } else {
+                mostrarEtapa('stepRecusa');
+                setTimeout(() => {
+                    document.getElementById('mensagemFinalRecusa').style.display = 'block';
+                    document.getElementById('mensagemFinalRecusa').classList.add('glitch-effect');
+                }, 1000);
+            }
+        }
+        
+        function processarExperiencia(resposta) {
+            const mensagemExperiencia = document.getElementById('mensagemExperiencia');
+            
+            if (resposta) {
+                mensagemExperiencia.innerHTML = "Que ótimo! Sua experiência será um diferencial!";
+                mensagemExperiencia.className = 'message success';
+            } else {
+                mensagemExperiencia.innerHTML = "Não se preocupe, oferecemos treinamentos para nossos colaboradores.";
+                mensagemExperiencia.className = 'message info';
+            }
+            
+            mostrarEtapa('step5');
+            setTimeout(() => {
+                document.getElementById('mensagemFinal').style.display = 'block';
+                document.getElementById('mensagemFinal').classList.add('glitch-effect');
+            }, 1000);
+        }
+        
+        function reiniciarProcesso() {
+            document.getElementById('nome').value = '';
+            document.getElementById('idade').value = '';
+            document.getElementById('mensagemFinal').style.display = 'none';
+            document.getElementById('mensagemFinalRecusa').style.display = 'none';
+            document.getElementById('mensagemFinal').classList.remove('glitch-effect');
+            document.getElementById('mensagemFinalRecusa').classList.remove('glitch-effect');
+            primeiroNome = "";
+            idade = 0;
+            sim = false;
+            mostrarEtapa('step1');
+        }
+    </script>
+</body>
+</html>
